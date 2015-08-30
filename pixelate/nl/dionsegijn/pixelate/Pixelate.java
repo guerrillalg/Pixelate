@@ -12,9 +12,6 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-/**
- * Created by Dion Segijn (danielmartinus) on 16/08/15.
- */
 public class Pixelate extends ImageView {
 
     private boolean clearCanvas = false;
@@ -117,7 +114,7 @@ public class Pixelate extends ImageView {
 
         if(bitmap == null) throw new NullPointerException("View does not contain image");
 
-        // get width and height of the entire bitmap
+        // Get width and height of the entire bitmap
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
 
@@ -139,7 +136,7 @@ public class Pixelate extends ImageView {
 
             for (int col = 0; col < cols; col++ ) {
                 int midY = (blockSize) * row + (blockSize / 2) + startY;
-                int midX = (blockSize) * col + (blockSize / 2) + startX; // for example: (150 * 2) + 75 = 225
+                int midX = (blockSize) * col + (blockSize / 2) + startX;
 
                 if(midX > width) return;
                 if(midY > height) return;
