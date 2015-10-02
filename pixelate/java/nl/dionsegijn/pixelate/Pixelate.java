@@ -12,6 +12,8 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
+import nl.dionsegijn.differences.R;
+
 public class Pixelate extends ImageView {
 
     private boolean clearCanvas = false;
@@ -44,13 +46,6 @@ public class Pixelate extends ImageView {
         readAttribute(context, attrs);
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public Pixelate(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        setDrawingCacheEnabled(true);
-        readAttribute(context, attrs);
-    }
-
     private void readAttribute(Context context, AttributeSet attrs) {
         TypedArray a = context.getTheme().obtainStyledAttributes(
                 attrs,
@@ -59,6 +54,12 @@ public class Pixelate extends ImageView {
         int density = a.getInteger(R.styleable.Pixelate_density, 0);
         a.recycle();
         pixelate(density);
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public Pixelate(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        setDrawingCacheEnabled(true);
     }
 
     @Override
@@ -85,6 +86,7 @@ public class Pixelate extends ImageView {
     }
 
     public void pixelate(int cols) {
+        if(cols == 0) return;
         this.cols = cols;
         render = true;
         this.invalidate();
@@ -114,7 +116,7 @@ public class Pixelate extends ImageView {
 
         if(bitmap == null) throw new NullPointerException("View does not contain image");
 
-        // Get width and height of the entire bitmap
+        // get width and height of the entire bitmap
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
 
@@ -130,21 +132,27 @@ public class Pixelate extends ImageView {
         } else {
             blockSize = width / cols;
             rows = Math.round((double)height / (double)blockSize);
+            int mod = height % blockSize;
+            blockSize = blockSize + (mod/cols);
         }
 
         for (int row = 0; row < rows; row++ ) {
 
             for (int col = 0; col < cols; col++ ) {
-                int midY = (blockSize) * row + (blockSize / 2) + startY;
-                int midX = (blockSize) * col + (blockSize / 2) + startX;
+                int midY = (blockSize) * row + startY;
+                int midX = (blockSize) * col + startX;
 
-                if(midX > width) return;
-                if(midY > height) return;
+                if(midX > width)
+                    return;
+                if(midY > height)
+                    return;
 
                 int pixel = 0;
                 try {
                     pixel = bitmap.getPixel(midX, midY);
-                } catch(Exception ex) {return;}
+                } catch(Exception ex) {
+                    return;
+                }
 
                 int r = Color.red(pixel);
                 int b = Color.blue(pixel);
@@ -161,8 +169,6 @@ public class Pixelate extends ImageView {
                 canvas.drawRect(top, left, bottom, right, paint);
             }
         }
-
-        isTouched = false;
         render = false;
     }
 }
