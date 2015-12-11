@@ -46,6 +46,10 @@ Download via Gradle:
 compile 'nl.dionsegijn:pixelate:1.0.2'
 ```
 
+## Authors and Contributors
+
+* Dion Segijn <https://twitter.com/DionSegijn>
+
 License
 -------
 
@@ -62,3 +66,6 @@ License
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
+    
+    
+    
