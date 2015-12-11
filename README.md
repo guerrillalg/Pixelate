@@ -12,7 +12,7 @@ _Heisenberg painting created by Armando Mesias_
 Use the Pixelate imageview in your layout XML.
 
 ```XML
-<nl.dionsegijn.pixelate
+<nl.dionsegijn.pixelate.Pixelate
         android:id="@+id/pixelate"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
