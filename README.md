@@ -1,4 +1,5 @@
 <a href="http://www.methodscount.com/?lib=nl.dionsegijn%3Apixelate%3A1.0.2"><img src="https://img.shields.io/badge/Size-16 KB-e91e63.svg"></img></a>
+[![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/fold_left.svg?style=social&label=Dion Segijn)](https://twitter.com/dionsegijn)
 
 # Pixelate
 For a project I needed to turn images into a pixelized version of itself. However I couldn't find a library for android available to use so I decided to write something myself. Please don't expect it to be perfect but I still wanted to put it on github for someone who could end up in the same situation as me. Any tips or contributions are welcome!
@@ -45,10 +46,6 @@ Download via Gradle:
 ```groovy
 compile 'nl.dionsegijn:pixelate:1.0.2'
 ```
-
-## Authors and Contributors
-
-* Dion Segijn <https://twitter.com/DionSegijn>
 
 License
 -------
