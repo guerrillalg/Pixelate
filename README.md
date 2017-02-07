@@ -1,50 +1,47 @@
-<a href="http://www.methodscount.com/?lib=nl.dionsegijn%3Apixelate%3A1.0.2"><img src="https://img.shields.io/badge/Size-16 KB-e91e63.svg"></img></a>
 [![Twitter](https://img.shields.io/badge/Twitter-@dionsegijn-blue.svg?style=flat)](http://twitter.com/dionsegijn)
 
 # Pixelate
-For a project I needed to turn images into a pixelized version of itself. However I couldn't find a library for android available to use so I decided to write something myself. Please don't expect it to be perfect but I still wanted to put it on github for someone who could end up in the same situation as me. Any tips or contributions are welcome!
+Simple Android library to pixelate images or certain areas of an image.
 
-![illustration](https://github.com/DanielMartinus/Pixelate/blob/master/images/pixelate_illustration.png "Pixelate")
-
-_Heisenberg painting created by Armando Mesias_
+<img src="https://github.com/DanielMartinus/Pixelate/blob/master/images/pixelate.jpg" width="240" /> <img src="https://github.com/DanielMartinus/Pixelate/blob/master/images/pixelate12.jpg" width="240" /> <img src="https://github.com/DanielMartinus/Pixelate/blob/master/images/pixelate128.jpg" width="240" />
 
 ## Usage
 
-Use the Pixelate imageview in your layout XML.
+Simply instantiate Pixelate, give it a bitmap and set the density. This will pixelate your whole image.
 
-```XML
-<nl.dionsegijn.pixelate.Pixelate
-        android:id="@+id/pixelate"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:scaleType="centerCrop"
-        android:src="your image.."/>
-```
-**Optional:** Add the following attribute to the layout to pixelate an image immediately
-
-```XML
-pixelate:density="10"
-```
-
-
-Call the pixelate method on the view to render the pixels with the preferred density
 ```Java
-Pixelate pixelate = (Pixelate)findViewById(R.id.pixelate);
-pixelate.pixelate(int density);
+new Pixelate(getBitmap())
+		.setDensity(12)
+		.setListener(this)
+		.make();
 ```
-Or call the following method to pixelate a certain area of the image
+
+If you want it to work with your ImageView and only pixelate a certain area:
+
+```
+new Pixelate(imageView)
+		.setArea(x, y, width, height)
+		.setDensity(density)
+		.make();
+```
+
+Use the `OnPixelateListener` to handle the bitmap yourself after it being processed.
+
 ```Java
-pixelate.pixelateArea(int x, int y, int size, int density);
+void onPixelated(Bitmap bitmap, int density) {
+
+}
 ```
+
 
 
 Download
 --------
 
-Download via Gradle:
-```groovy
-compile 'nl.dionsegijn:pixelate:1.0.2'
+Available via Maven:
+
+```
+compile 'nl.dionsegijn:pixelate:1.1.0'
 ```
 
 License
