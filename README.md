@@ -18,7 +18,7 @@ new Pixelate(getBitmap())
 
 If you want it to work with your ImageView and only pixelate a certain area:
 
-```
+```Java
 new Pixelate(imageView)
 		.setArea(x, y, width, height)
 		.setDensity(density)
