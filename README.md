@@ -40,7 +40,7 @@ Download
 
 Available via Maven:
 
-```
+```groovy
 compile 'nl.dionsegijn:pixelate:1.1.0'
 ```
 
