@@ -103,6 +103,14 @@ class PixelateThread extends Thread {
 
                 double midY = pixelCoordY + (blockSize / 2);
                 double midX = pixelCoordX + (blockSize / 2);
+                
+                if(midX >= bmpWidth) {
+                    midX = bmpWidth - (bmpWidth - pixelCoordX) / 2.0;
+                }
+
+                if(midY >= bmpHeight) {
+                    midY = bmpHeight - (bmpHeight - pixelCoordY) / 2.0;
+                }
 
                 if(midX >= bmpWidth || midX < 0) continue;
                 if(midY >= bmpHeight || midY < 0) continue;
